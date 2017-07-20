@@ -4,20 +4,23 @@
 		<title>Game</title>
 	</head>
 	<body>
-		
-		<canvas id="canvas" width="1000px" height="600px" style="background: #aaaaaa"></canvas>	
-		
+		<canvas id="canvas" width="1000px" height="600px" style="background: #aaaaaa"></canvas>
 		
 		<img id="a" src="a.png" style="visibility: hidden;">
 		<img id="b" src="b.png" style="visibility: hidden;">
 		<img id="c" src="c.png" style="visibility: hidden;">
 		<img id="d" src="d.png" style="visibility: hidden;">
+		<img id="g" src="g.png" style="visibility: hidden;">
+		<img id="s" src="s.png" style="visibility: hidden;">
+		<img id="w" src="w.png" style="visibility: hidden;">
+		<img id="t" src="t.png" style="visibility: hidden;">
 
 		<script src="engine.js"></script>
 		<script src="player.js"></script>
 		<script src="key.js"></script>
 		<script src="map.js"></script>
 		<script src="camera.js"></script>
+		<script src="tree.js"></script>
 
 		<script type="text/javascript">
 
@@ -26,15 +29,16 @@
 			var map = new WorldMap(); 
 			var player = new Player();
 			var camera = new Camera();
+			var tree = new Tree();
 
 			
 			camera.renderingObjs.push(map);
 			camera.renderingObjs.push(player);
+			camera.renderingObjs.push(tree);
 
 			canvas.onmousemove = function(event){
 				camera.mX = event.pageX;
 				camera.mY = event.pageY;
-				console.log(event.pageX, event.pageY);
 			}
 
 			var gameLoop = function() {

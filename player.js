@@ -39,14 +39,14 @@ class Player {
 	}
 
 	nextStep(move, d){
-		if (this.step < 3) {
-			this.step++;
+		if (this.animationStep < 3) {
+			this.animationStep++;
 			move(this, d * 1/3);
 			setTimeout(()=>{
 				this.nextStep(move, d);
 			}, 150)
 		} else {
-			this.step = 0;
+			this.animationStep = 0;
 			this.isMoving = false;
 		}
 	}

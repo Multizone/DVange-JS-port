@@ -1,61 +1,27 @@
-class ObjMap {
+class ObjList {
 
 	constructor() {
-		this.map = [
-			[0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		this.objects = [
+			new Tree(2,3),
+			new Tree(2,6)
 		];
-		this.objects = new ObjectFactory();
     }
 
-	render(cameraX, cameraY){
-		for (let x=0; x<20; x++){
-			for (let y=0; y<12; y++){
-				this.objects.getInstanseById(this.map[y][x]).render(x - cameraX, y - cameraY);
-			}
+	render(cameraX, cameraY) {
+		for (var i = 0; i < this.objects.length; i++) {	
+			this.objects[i].render(cameraX, cameraY);
 		}
 	}
 }
 
-class ObjectFactory {
-
-	constructor() {
-		this.objects = new Map();
-		this.objects.set(0, new Null());
-		this.objects.set(1, new Tree());
-		
-    }
-
-	getInstanseById(id){
-		return this.objects.get(id);
-	}
-}
-
-class Null {
-	constructor() {}
-
-	render(x, y) {
-	}
-}
-
-
 class Tree {
-	constructor() {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
 		this.img = loadImage('t');
 	}
 
-	render(x, y) {
-		context.drawImage(this.img, 0, 0, 91,121, x*50,y*50-50,91,121);
-
+	render(cameraX, cameraY) {
+		context.drawImage(this.img, 0, 0, 91, 121, (this.x-cameraX)*50-20, (this.y-cameraY)*50-71, 91, 121);
 	}
 }

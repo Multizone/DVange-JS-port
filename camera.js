@@ -19,5 +19,6 @@ class Camera {
 	render() {
 		this.renderingObjs[0].render(this.x, this.y);
 		this.renderingObjs[1].render(this.x, this.y);
+		this.renderingObjs[2].render(this.x, this.y);
 	}
 }

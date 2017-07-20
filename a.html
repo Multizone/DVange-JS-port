@@ -20,7 +20,7 @@
 		<script src="key.js"></script>
 		<script src="map.js"></script>
 		<script src="camera.js"></script>
-		<script src="tree.js"></script>
+		<script src="obj.js"></script>
 
 		<script type="text/javascript">
 
@@ -29,12 +29,14 @@
 			var map = new WorldMap(); 
 			var player = new Player();
 			var camera = new Camera();
-			var tree = new Tree();
+			var objs = new ObjMap();
 
 			
 			camera.renderingObjs.push(map);
 			camera.renderingObjs.push(player);
-			camera.renderingObjs.push(tree);
+			camera.renderingObjs.push(objs);
+			
+
 
 			canvas.onmousemove = function(event){
 				camera.mX = event.pageX;

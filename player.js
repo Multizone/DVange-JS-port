@@ -1,3 +1,4 @@
+asd
 class Player {
 	constructor() {
 		this.x = 1;

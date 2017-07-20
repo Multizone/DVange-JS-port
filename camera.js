@@ -27,8 +27,8 @@ class Camera {
 		canvas.style.left = this.addedX +'px';
 		canvas.style.top = this.addedY +'px';
 
-		this.renderingObjs[0].render(this.x, this.y);
-		this.renderingObjs[1].render(this.x, this.y);
-		this.renderingObjs[2].render(this.x, this.y);
+		for (var i = 0; i < this.renderingObjs.length; i++) {	
+			this.renderingObjs[i].render(this.x, this.y);
+		}
 	}
 }

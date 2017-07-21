@@ -27,8 +27,21 @@ class Camera {
 		canvas.style.left = this.addedX +'px';
 		canvas.style.top = this.addedY +'px';
 
-		for (var i = 0; i < this.renderingObjs.length; i++) {	
-			this.renderingObjs[i].render(this.x, this.y);
+		for (let y = 0; y<12; y++){
+			for (let x = 0; x<20; x++){
+				let t = this.renderingObjs[0].getObj(x, y);
+				if (t!=undefined) t.render(this.x, this.y);
+			}
 		}
+		for (let y = 0; y<12; y++){
+			for (let x = 0; x<20; x++){
+				for (var i = 1; i < this.renderingObjs.length; i++) 
+				{	
+					let t = this.renderingObjs[i].getObj(x, y);
+					if (t!=undefined) t.render(this.x, this.y);
+				}
+			}
+		}
+		
 	}
 }

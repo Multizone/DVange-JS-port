@@ -2,16 +2,18 @@ class ObjList {
 
 	constructor() {
 		this.objects = [
-			new Tree(2,3),
-			new Tree(2,6)
+			new Tree(0,0),
+			new Tree(2,3)
 		];
     }
 
-	render(cameraX, cameraY) {
-		for (var i = 0; i < this.objects.length; i++) {	
-			this.objects[i].render(cameraX, cameraY);
-		}
-	}
+	getObj(x, y){
+    	for (let i = 0; i<this.objects.length; i++){
+
+    		if (this.objects[i].x==x && this.objects[i].y==y)
+    			return this.objects[i];
+    	}
+    }
 }
 
 class Tree {

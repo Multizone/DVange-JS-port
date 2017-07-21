@@ -6,6 +6,11 @@ class Player {
 		this.animationStep = 0;
 	}
 
+	getObj(x, y){
+		if (Math.ceil(this.x)==x && Math.ceil(this.y)==y)
+			return this;
+	}
+
 	addX(player, X){
 		player.x += X;
 	}

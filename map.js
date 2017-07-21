@@ -15,61 +15,63 @@ class WorldMap {
 			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 		];
-		this.blocks = new BlockFactory();
-    }
+		this.blocks = [];
 
-	render(cameraX, cameraY){
-		for (let x=0; x<20; x++){
-			for (let y=0; y<12; y++){
-				this.blocks.getInstanseById(this.map[y][x]).render(x - cameraX, y - cameraY);
+		for (let y = 0; y<this.map.length; y++){
+			let line = [];
+			for (let x = 0; x<this.map[y].length; x++){
+				line.push(this.getInstanseById(this.map[y][x], x, y));
 			}
+			this.blocks.push(line);
 		}
-	}
-}
 
-class BlockFactory {
-
-	constructor() {
-		this.blocks = new Map();
-		this.blocks.set(0, new Water());
-		this.blocks.set(1, new Grass()); 	
-		this.blocks.set(2, new Sand()); 
-		
     }
 
-	getInstanseById(id){
-		return this.blocks.get(id);
+	getInstanseById(id, x, y){
+		if (id == 0) return new Water(x, y);
+		if (id == 1) return new Grass(x, y);
+		if (id == 2) return new Sand(x, y);
 	}
+
+    getObj(x, y){
+    	return this.blocks[y][x];
+    }
 }
 
 class Grass {
-	constructor() {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
 		this.img = loadImage('g');
 	}
 
-	render(x, y) {
-		context.drawImage(this.img, 0, 0, 50,50, x*50,y*50,50,50);
+	render(cameraX, cameraY) {
+		context.drawImage(this.img, 0, 0, 50,50, (this.x-cameraX)*50,(this.y-cameraY)*50,50,50);
 
 	}
 }
 
 class Sand {
-	constructor() {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
 		this.img = loadImage('s');
 	}
 
-	render(x, y) {
-		context.drawImage(this.img, 0, 0, 50,50, x*50,y*50,50,50);
+	render(cameraX, cameraY) {
+		context.drawImage(this.img, 0, 0, 50,50, (this.x-cameraX)*50,(this.y-cameraY)*50,50,50);
 	}
 }
 
 class Water {
-	constructor() {
+	constructor(x, y) {
+		this.x = x;
+		this.y = y;
 		this.img = loadImage('w');
 	}
 
-	render(x, y) {
-		context.drawImage(this.img, 0, 0, 100,100, x*50,y*50,50,50);
+	render(cameraX, cameraY) {
+		context.drawImage(this.img, 0, 0, 100,100, (this.x-cameraX)*50,(this.y-cameraY)*50,50,50);
 	}
 }
 

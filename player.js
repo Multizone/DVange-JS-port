@@ -20,19 +20,24 @@ class Player {
 	}
 
 	goLeft(){
-		this.startMove('b', this.addX, -1);
+		if (map.getObj(this.x - 1, this.y).passable)
+			this.startMove('b', this.addX, -1);
+
 	}
 
 	goRight(){
-		this.startMove('a', this.addX, 1);
+		if (map.getObj(this.x + 1, this.y).passable)
+			this.startMove('a', this.addX, 1);
 	}
 
 	goUp(){
-		this.startMove('c', this.addY, -1);
+		if (map.getObj(this.x, this.y - 1).passable)
+			this.startMove('c', this.addY, -1);
 	}
 
 	goDown(){
-		this.startMove('d', this.addY, 1);
+		if (map.getObj(this.x, this.y + 1).passable)
+			this.startMove('d', this.addY, 1);
 	}
 
 	startMove(imgUrl, move, d){

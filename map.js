@@ -16,6 +16,7 @@ class WorldMap {
 			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 		];
 		this.blocks = [];
+		
 
 		for (let y = 0; y<this.map.length; y++){
 			let line = [];
@@ -25,8 +26,8 @@ class WorldMap {
 			this.blocks.push(line);
 		}
 
-    }
-
+	}
+	
 	getInstanseById(id, x, y){
 		if (id == 0) return new Water(x, y);
 		if (id == 1) return new Grass(x, y);
@@ -34,7 +35,7 @@ class WorldMap {
 	}
 
     getObj(x, y){
-    	return this.blocks[y][x];
+    	return this.blocks[Math.ceil(y)][Math.ceil(x)];
     }
 }
 
@@ -43,6 +44,7 @@ class Grass {
 		this.x = x;
 		this.y = y;
 		this.img = loadImage('g');
+		this.passable = true;
 	}
 
 	render(cameraX, cameraY) {
@@ -56,6 +58,7 @@ class Sand {
 		this.x = x;
 		this.y = y;
 		this.img = loadImage('s');
+		this.passable = true
 	}
 
 	render(cameraX, cameraY) {
@@ -68,6 +71,7 @@ class Water {
 		this.x = x;
 		this.y = y;
 		this.img = loadImage('w');
+		this.passable = false;
 	}
 
 	render(cameraX, cameraY) {
